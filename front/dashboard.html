@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Planix</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav>
+        <!-- TOPO DA NAVBAR -->
+        <div class="nav-top-row">
+            <!-- 1. LOGO E PÁGINA ATUAL -->
+            <div class="logo">
+                <img src="img/Planix_dark.png" alt="Logo" />
+                <div class="separator"></div>
+                <span class="current-page">Home</span>
+            </div>
+
+            <!-- 2. SEARCH E ASK AI -->
+            <div class="search-container">
+                <div class="search search-field-style">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search..." class="search-input" />
+                </div>
+
+                <div class="ask-ai search-field-style">
+                    <i class="bi bi-robot ai-icon"></i>
+                    <a href="#" class="ai-button">ASK AI</a>
+                </div>
+            </div>
+
+            <!-- 3. PERFIL E NOTIFICAÇÕES -->
+            <div class="nav-actions">
+                <!-- ID para o toggle da notificação -->
+                <a href="#" class="nav-action-item notification-icon" id="notification-toggle">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="notification-badge">3</span>
+                </a>
+
+                <a href="#" class="nav-action-item profile-avatar">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PRIMEIRA LINHA -->
+        <div class="nav-divider"></div>
+
+        <!-- LINKS DE NAVEGAÇÃO -->
+        <div class="nav-links">
+            <span class="nav-links-title">Menu</span>
+
+            <div class="nav-item">
+                <a href="#">Home <span>▼</span></a>
+                <div class="dropdown">
+                    <a href="#">Visão Geral</a>
+                    <a href="#">Relatórios</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#">Metas <span>▼</span></a>
+                <div class="dropdown">
+                    <a href="#">Minhas Metas</a>
+                    <a href="#">Nova Meta</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#">Investimentos <span>▼</span></a>
+                <div class="dropdown">
+                    <a href="#">Carteira</a>
+                    <a href="#">Aportes</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#">Configurações</a>
+            </div>
+        </div>
+
+        <!-- SEGUNDA LINHA (FULL WIDTH) -->
+        <div class="nav-divider full-width"></div>
+    </nav>
+
+    <!-- NOVO: PAINEL LATERAL DE NOTIFICAÇÕES -->
+    <div id="notification-panel" class="notification-panel">
+        <div class="panel-header">
+            <h2>Notificações (3)</h2>
+            <button id="close-panel" class="close-button">&times;</button>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <i class="bi bi-check-circle-fill"></i>
+                <p>Meta "Viagem 2025" atingiu 80% do valor!</p>
+                <span>Há 5 minutos</span>
+            </div>
+            <div class="notification-item unread">
+                <i class="bi bi-arrow-up-circle-fill"></i>
+                <p>Novo aporte agendado para $500,00 em Ações.</p>
+                <span>Há 2 horas</span>
+            </div>
+            <div class="notification-item unread">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <p>Taxas do seu investimento em CDB foram atualizadas.</p>
+                <span>Ontem</span>
+            </div>
+            <div class="notification-item">
+                <i class="bi bi-info-circle-fill"></i>
+                <p>Seu relatório mensal de Julho está pronto.</p>
+                <span>3 dias atrás</span>
+            </div>
+        </div>
+        <a href="#" class="view-all-link">Ver todas as notificações</a>
+    </div>
+
+    <!-- Overlay de fundo para o painel -->
+    <div id="panel-overlay" class="panel-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
