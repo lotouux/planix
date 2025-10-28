@@ -1,11 +1,10 @@
-// C:\Users\beatr\planix\src\App.jsx
-
 import React from 'react';
 import Navbar from './components/Navbar';
 import BalanceCard from './components/BalanceCard';
 import RevenueExpenseChart from './components/RevenueExpenseChart'; // Novo componente de gráfico
 import RecentTransactions from './components/RecentTransactions';
 import FinancialPet from './components/FinancialPet';
+import GoalTracker from './components/GoalTracker';
 
 // Dados fictícios para os 4 cards
 const cardData = [
@@ -77,15 +76,16 @@ export default function App() { /* Exportação única aqui */
                         <RecentTransactions />
                     </div>
 
-                    {/* Coluna Direita: Pet Financeiro */}
-                    <div>
-                        {/* Você pode passar um valor real de saúde financeira aqui, 
-                            ex: <FinancialPet financialHealthPercentage={75} /> */}
-                        <FinancialPet />
+                    {/* Coluna Direita: Pet Financeiro e Metas 
+                       ⚠️ ATENÇÃO: A div desnecessária ao redor da right-column foi removida 
+                       e a própria right-column deve garantir o espaçamento.
+                    */}
+                    <div className="right-column">
+                        <FinancialPet financialHealthPercentage={75} />
+                        <GoalTracker />
                     </div>
                 </div>
-
-            </main >
+            </main>
         </>
     );
 }

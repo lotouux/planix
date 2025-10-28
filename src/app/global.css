@@ -508,7 +508,6 @@ nav {
     width: 100%;
     max-width: var(--max-content-width);
     margin: 0 auto;
-
     /* Usa o padding lateral MAIOR: 3rem */
     padding: 2rem var(--padding-side-dashboard);
 }
@@ -536,8 +535,7 @@ nav {
 .balance-card:hover {
     transform: translateY(-5px) scale(1.02);
     background-color: var(--color-bg-hover);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5),
-        0 0 25px var(--color-subtle-glow);
+    box-shadow: 0 0 20px var(--color-neon-green);
     border-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -606,18 +604,28 @@ nav {
 .dashboard-content-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    /* 2 partes para gráfico/tabela, 1 parte para o pet */
     gap: 30px;
     /* Espaço entre as colunas */
     margin-top: 30px;
-    /* Espaço para separar dos cards de saldo */
+    /* AJUSTE ESSENCIAL: Garante que as linhas do grid se ajustem */
+    align-items: start;
+    /* Alinha no topo, mas permite que os filhos se estiquem. */
 }
 
 .left-column {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    /* Espaço entre o gráfico e a tabela na coluna esquerda */
+    /* Espaço entre o gráfico e a tabela */
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* 👈 Este é o ajuste para o espaçamento entre Pet e Metas */
+    height: 100%;
+    /* Permite que o Pet e o Metas se ajustem na altura total da coluna. */
 }
 
 /* ======================================= 7. RESPONSIVO ======================================= */
@@ -896,7 +904,7 @@ nav {
 /* ======================================= 10. PET FINANCEIRO (FINO-BOT) ======================================= */
 
 .pet-card {
-    height: 100%;
+    height: auto;
     background-color: var(--color-bg-dark);
     border-radius: 12px;
     padding: 20px;
@@ -912,7 +920,9 @@ nav {
 }
 
 .pet-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
+    z-index: 2;
+    box-shadow: 0 0 20px var(--color-neon-green);
 }
 
 /* Título e subtítulo pequenos */
@@ -1187,7 +1197,7 @@ nav {
     height: 100%;
     background-color: var(--color-neon-green);
     width: var(--pet-health-percentage, 80%);
-    border-radius: 6px;
+    border-radius: 6-px;
     transition: width 0.5s ease-out;
     box-shadow: 0 0 12px var(--color-neon-green);
 }
@@ -1204,4 +1214,215 @@ nav {
     border: 1px solid rgba(76, 200, 136, 0.3);
     font-style: normal;
     /* sem itálico */
+}
+
+/* ======================================= 11. TRACKER DE METAS (Borda Animada) ======================================= */
+
+.goal-tracker-card {
+    width: 100%;
+    /* Altura definida pelo conteúdo */
+    background-color: var(--color-bg-dark);
+    /* Fundo igual aos outros cards */
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    /* Remove a borda padrão para dar lugar ao ::before */
+    border: none;
+}
+
+/* Pseudo-elemento para a Borda Colorida Animada (IGUAL AO GRÁFICO/TRANSAÇÕES) */
+.goal-tracker-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg,
+            var(--color-neon-green),
+            var(--color-neon-blue),
+            var(--color-neon-red),
+            var(--color-neon-yellow),
+            var(--color-neon-green));
+    background-size: 400% 400%;
+    animation: gradientBorder 8s ease infinite;
+    z-index: 0;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Efeito de Hover na Div da Meta (IGUAL AO GRÁFICO/TRANSAÇÕES) */
+.goal-tracker-card:hover {
+    transform: scale(1.01);
+    z-index: 2;
+    box-shadow: 0 0 15px var(--color-neon-green);
+}
+
+/* Garante que o conteúdo interno esteja acima da borda animada */
+.goal-tracker-content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* TÍTULOS E BOTÕES */
+.goal-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.goal-tracker-title {
+    font-size: 1.2rem;
+    /* Alinhado ao título do Transações */
+    font-weight: 600;
+    color: #e0e0e0;
+    text-shadow: none;
+    /* Remove text-shadow exagerado */
+}
+
+.goal-tracker-subtitle {
+    color: #888888;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* NOVO BOTÃO NEON (Mais discreto e alinhado) */
+.btn-neon-goal {
+    background: none;
+    border: 1px solid var(--color-neon-green);
+    color: var(--color-neon-green);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--color-neon-green);
+    /* Sombra suave */
+    transition: all 0.3s;
+}
+
+.btn-neon-goal:hover {
+    background-color: var(--color-neon-green);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 15px var(--color-neon-green);
+    transform: translateY(-1px);
+}
+
+/* LISTA DE METAS */
+.goals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Espaço entre as metas */
+}
+
+/* Item de Meta (Sem Borda Quadrada, usa linha sutil ou nada) */
+.goal-item {
+    background-color: transparent;
+    /* Fundo transparente ou sutil para não ter 'quadrados' */
+    padding: 10px 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    /* Linha divisória sutil */
+    box-shadow: none;
+    /* Sem sombra ao redor do item */
+}
+
+.goal-item:last-child {
+    border-bottom: none;
+    /* Remove a linha do último item */
+}
+
+.goal-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Move o título para a esquerda e o progresso para a direita */
+    margin-bottom: 5px;
+}
+
+.goal-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Ícone de Meta (Alinhado ao estilo dos cards) */
+.goal-icon {
+    font-size: 1.2rem;
+    margin-right: 12px;
+    color: var(--color-neon-green);
+    /* Cor padrão do ícone */
+    text-shadow: 0 0 5px currentColor;
+    flex-shrink: 0;
+}
+
+.goal-title-group {
+    display: flex;
+    align-items: center;
+}
+
+/* BARRA DE PROGRESSO E PORCENTAGEM */
+.goal-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.goal-progress-bar {
+    flex-grow: 1;
+    height: 8px;
+    /* Mais fino */
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: none;
+    /* Remove shadow interna para ser mais clean */
+}
+
+.goal-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+}
+
+.goal-percentage {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* VALORES */
+.goal-values {
+    display: flex;
+    justify-content: flex-end;
+    /* Alinha os valores à direita */
+    font-size: 0.85rem;
+    margin-top: -10px;
+    /* Sobe um pouco para ficar perto da barra */
+}
+
+.invested-value {
+    font-weight: 500;
+}
+
+.target-value {
+    color: #888;
+    margin-left: 5px;
+}
+
+.goal-completed {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 0.8rem;
 }
