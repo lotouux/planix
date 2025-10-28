@@ -16,6 +16,10 @@ const navLinks = [
         dropdown: [{ name: "Minhas Metas", href: "#" }, { name: "Nova Meta", href: "#" }]
     },
     {
+        title: "Transações",
+        dropdown: [{ name: "Minhas Transações", href: "#" }, { name: "Nova Transação", href: "#" }]
+    },
+    {
         title: "Investimentos",
         dropdown: [{ name: "Carteira", href: "#" }, { name: "Aportes", href: "#" }]
     },
