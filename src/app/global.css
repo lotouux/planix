@@ -1,5 +1,9 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 /* ======================================= 0. CONSTANTES DE ESTILO (Revisado) ======================================= */
 :root {
@@ -1425,4 +1429,179 @@ nav {
     text-align: right;
     margin-top: 5px;
     font-size: 0.8rem;
+}
+
+/* ======================================= 12. SEÇÃO PRINCIPAL ======================================= */
+.page-main {
+    width: 100%;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 2rem var(--padding-side-dashboard);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ======================================= 13. TÍTULOS DE SEÇÃO ======================================= */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--color-neon-green);
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #888888;
+    margin-bottom: 20px;
+}
+
+/* ======================================= 14. BOTÕES ======================================= */
+.btn-neon {
+    background: none;
+    border: 1px solid var(--color-neon-green);
+    color: var(--color-neon-green);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+    background-color: var(--color-neon-green);
+    color: var(--color-bg-dark);
+    box-shadow: 0 0 10px var(--color-neon-green);
+}
+
+/* ======================================= 15. CARDS ADICIONAIS ======================================= */
+.page-card {
+    background-color: var(--color-bg-dark);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px var(--color-neon-green);
+}
+
+/* Pseudo-borda animada opcional */
+.page-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg,
+            var(--color-neon-green),
+            var(--color-neon-blue),
+            var(--color-neon-red),
+            var(--color-neon-yellow),
+            var(--color-neon-green));
+    background-size: 400% 400%;
+    animation: gradientBorder 8s ease infinite;
+    z-index: 0;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Conteúdo do card acima da borda */
+.page-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* ======================================= 16. FORMULÁRIOS ======================================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #aaa;
+}
+
+.form-input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: var(--color-bg-black);
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    border-color: var(--color-neon-green);
+    box-shadow: 0 0 5px var(--color-neon-green);
+}
+
+/* ======================================= 17. LISTAS E ITENS ======================================= */
+.page-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.page-list-item {
+    background-color: var(--color-bg-dark);
+    border-radius: 8px;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s, box-shadow 0.3s ease;
+}
+
+.page-list-item:hover {
+    background-color: var(--color-bg-hover);
+    box-shadow: 0 0 10px var(--color-neon-green);
+}
+
+/* ======================================= 18. RESPONSIVO ======================================= */
+@media (max-width: 1024px) {
+    .balance-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .balance-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-main {
+        padding: 2rem 1rem;
+    }
+
+    .btn-neon {
+        width: 100%;
+        text-align: center;
+    }
 }

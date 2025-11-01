@@ -1,10 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import BalanceCard from './components/BalanceCard';
 import RevenueExpenseChart from './components/RevenueExpenseChart'; // Novo componente de gráfico
 import RecentTransactions from './components/RecentTransactions';
 import FinancialPet from './components/FinancialPet';
 import GoalTracker from './components/GoalTracker';
+import Reports from './components/Reports';
 
 // Dados fictícios para os 4 cards
 const cardData = [
@@ -46,46 +48,48 @@ const cardData = [
     },
 ];
 
-export default function App() { /* Exportação única aqui */
+function HomeDashboard() {
     return (
-        <>
+        <main className="dashboard-main">
+            <h1>Dashboard Financeiro</h1>
+            <p className="welcome-message">Bem-vindo(a) de volta! Veja o panorama mensal dos seus investimentos.</p>
+
+            <div className="balance-card-grid">
+                {cardData.map(card => (
+                    <BalanceCard
+                        key={card.id}
+                        title={card.title}
+                        value={card.value}
+                        change={card.change}
+                        iconClass={card.icon}
+                        colorVar={card.color}
+                        colorDegrade={card.degrade}
+                    />
+                ))}
+            </div>
+
+            <div className="dashboard-content-grid">
+                <div className="left-column">
+                    <RevenueExpenseChart />
+                    <RecentTransactions />
+                </div>
+                <div className="right-column">
+                    <FinancialPet financialHealthPercentage={75} />
+                    <GoalTracker />
+                </div>
+            </div>
+        </main>
+    );
+}
+
+export default function App() {
+    return (
+        <Router>
             <Navbar />
-            <main className="dashboard-main">
-                <h1>Dashboard Financeiro</h1>
-                <p className="welcome-message">Bem-vindo(a) de volta! Veja o panorama mensal dos seus investimentos.</p>
-
-                {/* Container para os Cards */}
-                <div className="balance-card-grid">
-                    {cardData.map(card => (
-                        <BalanceCard
-                            key={card.id}
-                            title={card.title}
-                            value={card.value}
-                            change={card.change}
-                            iconClass={card.icon}
-                            colorVar={card.color}
-                            colorDegrade={card.degrade}
-                        />
-                    ))}
-                </div>
-
-                <div className="dashboard-content-grid">
-                    {/* Coluna Esquerda: Gráfico e Transações */}
-                    <div className="left-column">
-                        <RevenueExpenseChart />
-                        <RecentTransactions />
-                    </div>
-
-                    {/* Coluna Direita: Pet Financeiro e Metas 
-                       ⚠️ ATENÇÃO: A div desnecessária ao redor da right-column foi removida 
-                       e a própria right-column deve garantir o espaçamento.
-                    */}
-                    <div className="right-column">
-                        <FinancialPet financialHealthPercentage={75} />
-                        <GoalTracker />
-                    </div>
-                </div>
-            </main>
-        </>
+            <Routes>
+                <Route path="/" element={<HomeDashboard />} />
+                <Route path="/reports" element={<Reports />} />
+            </Routes>
+        </Router>
     );
 }
