@@ -1,14 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from './components/Navbar';
-import BalanceCard from './components/BalanceCard';
-import RevenueExpenseChart from './components/RevenueExpenseChart'; // Novo componente de gráfico
-import RecentTransactions from './components/RecentTransactions';
-import FinancialPet from './components/FinancialPet';
-import GoalTracker from './components/GoalTracker';
-import Reports from './components/Reports';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import "./app/global.css" // adicionando importação do CSS global
+import Navbar from "./components/Navbar"
+import BalanceCard from "./components/BalanceCard"
+import RevenueExpenseChart from "./components/RevenueExpenseChart"
+import RecentTransactions from "./components/RecentTransactions"
+import FinancialPet from "./components/FinancialPet"
+import GoalTracker from "./components/GoalTracker"
+import ReportsPage from "./components/Reports"
 
-// Dados fictícios para os 4 cards
 const cardData = [
     {
         id: 1,
@@ -17,7 +16,7 @@ const cardData = [
         change: "+2.5%",
         icon: "bi-wallet2",
         color: "var(--color-neon-green)",
-        degrade: "var(--degrade-subtle-green)"
+        degrade: "var(--degrade-subtle-green)",
     },
     {
         id: 2,
@@ -26,7 +25,7 @@ const cardData = [
         change: "+12.0%",
         icon: "bi-arrow-up-circle",
         color: "var(--color-neon-blue)",
-        degrade: "var(--degrade-subtle-blue)"
+        degrade: "var(--degrade-subtle-blue)",
     },
     {
         id: 3,
@@ -35,7 +34,7 @@ const cardData = [
         change: "-5.3%",
         icon: "bi-arrow-down-circle",
         color: "var(--color-neon-red)",
-        degrade: "var(--degrade-subtle-red)"
+        degrade: "var(--degrade-subtle-red)",
     },
     {
         id: 4,
@@ -44,9 +43,9 @@ const cardData = [
         change: "+25.8%",
         icon: "bi-piggy-bank",
         color: "var(--color-neon-yellow)",
-        degrade: "var(--degrade-subtle-yellow)"
+        degrade: "var(--degrade-subtle-yellow)",
     },
-];
+]
 
 function HomeDashboard() {
     return (
@@ -55,7 +54,7 @@ function HomeDashboard() {
             <p className="welcome-message">Bem-vindo(a) de volta! Veja o panorama mensal dos seus investimentos.</p>
 
             <div className="balance-card-grid">
-                {cardData.map(card => (
+                {cardData.map((card) => (
                     <BalanceCard
                         key={card.id}
                         title={card.title}
@@ -79,7 +78,7 @@ function HomeDashboard() {
                 </div>
             </div>
         </main>
-    );
+    )
 }
 
 export default function App() {
@@ -88,8 +87,8 @@ export default function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomeDashboard />} />
-                <Route path="/reports" element={<Reports />} />
+                <Route path="/reports" element={<ReportsPage />} />
             </Routes>
         </Router>
-    );
+    )
 }
