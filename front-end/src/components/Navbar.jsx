@@ -1,5 +1,3 @@
-// src/components/Navbar.jsx
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NotificationPanel from './NotificationPanel';
@@ -14,7 +12,7 @@ const navLinks = [
     },
     {
         title: "Metas",
-        dropdown: [{ name: "Minhas Metas", href: "#" }, { name: "Nova Meta", href: "#" }]
+        dropdown: [{ name: "Minhas Metas", href: "/goals" }, { name: "Nova Meta", href: "#" }]
     },
     {
         title: "Transações",

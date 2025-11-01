@@ -7,6 +7,7 @@ import RecentTransactions from "./components/RecentTransactions"
 import FinancialPet from "./components/FinancialPet"
 import GoalTracker from "./components/GoalTracker"
 import ReportsPage from "./components/Reports"
+import GoalsPage from "./components/Goals"
 
 const cardData = [
     {
@@ -88,6 +89,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomeDashboard />} />
                 <Route path="/reports" element={<ReportsPage />} />
+                <Route path="/goals" element={<GoalsPage />} />
             </Routes>
         </Router>
     )
