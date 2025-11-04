@@ -11,4 +11,5 @@ import java.util.List;
 public interface GoalContributionRepository extends JpaRepository<GoalContribution, Long> {
 
     List<GoalContribution> findByGoal(Goal goal);
+    List<GoalContribution> findByGoal_IdGoal(Long idGoal);
 }
