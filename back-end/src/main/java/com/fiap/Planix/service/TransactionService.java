@@ -8,7 +8,6 @@ import com.fiap.Planix.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
@@ -37,7 +36,7 @@ public class TransactionService {
         bankAccountRepository.save(account);
     }
 
-    @Transactional
+
     public Transaction saveTransaction(Transaction transaction, User user) {
         if (transaction.getBankAccount() == null || transaction.getBankAccount().getIdBankAccount() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Transação deve estar vinculada a uma conta bancária.");
@@ -68,7 +67,7 @@ public class TransactionService {
         return transactionRepository.findById(id);
     }
 
-    @Transactional
+
     public Transaction updateTransaction(Long id, Transaction transactionDetails, User user) {
         Transaction existingTransaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transação não encontrada."));
@@ -97,7 +96,7 @@ public class TransactionService {
         return transactionRepository.save(existingTransaction);
     }
 
-    @Transactional
+
     public void deleteTransaction(Long id, User user) {
         Transaction transactionToDelete = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transação não encontrada."));

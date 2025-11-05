@@ -8,7 +8,6 @@ import com.fiap.Planix.repository.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
@@ -33,7 +32,7 @@ public class GoalService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Meta não encontrada ou acesso negado."));
     }
 
-    @Transactional
+
     public Goal saveGoal(Goal goal, User user) {
         goal.setUser(user);
 
@@ -50,7 +49,7 @@ public class GoalService {
         return goalRepository.save(goal);
     }
 
-    @Transactional
+
     public Goal updateGoal(Long idGoal, Goal goalDetails, User user) {
         Goal existingGoal = findGoalByIdAndUser(idGoal, user);
 
@@ -64,7 +63,7 @@ public class GoalService {
         return goalRepository.save(existingGoal);
     }
 
-    @Transactional
+
     public void deleteGoal(Long idGoal, User user) {
         Goal goalToDelete = findGoalByIdAndUser(idGoal, user);
 
@@ -73,7 +72,7 @@ public class GoalService {
         goalRepository.delete(goalToDelete);
     }
 
-    @Transactional
+
     public GoalContribution addContribution(Long goalId, BigDecimal amount, User contributingUser) {
         Goal goal = findGoalByIdAndUser(goalId, contributingUser);
 
