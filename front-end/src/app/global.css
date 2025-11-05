@@ -578,6 +578,20 @@ nav {
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
+/* 🔑 NOVO: Garante que o canvas preencha a div */
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  /* Adiciona o padding para evitar que o gráfico toque nas bordas */
+}
+
 .chart-container::before {
   content: "";
   position: absolute;
@@ -1355,6 +1369,7 @@ nav {
   .transactions-container {
     padding: 15px;
     min-height: 200px;
+    /* Ajuste a altura mínima para o menor dos casos */
   }
 
   .transactions-table th,
