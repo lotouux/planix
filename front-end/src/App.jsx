@@ -1,96 +1,45 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import "./app/global.css" // adicionando importação do CSS global
+"use client"
+
+import { useState } from "react"
 import Navbar from "./components/Navbar"
-import BalanceCard from "./components/BalanceCard"
-import RevenueExpenseChart from "./components/RevenueExpenseChart"
-import RecentTransactions from "./components/RecentTransactions"
-import FinancialPet from "./components/FinancialPet"
-import GoalTracker from "./components/GoalTracker"
-import ReportsPage from "./components/Reports"
-import GoalsPage from "./components/Goals"
+import Dashboard from "./pages/Dashboard"
+import Transactions from "./pages/Transactions"
+import Investments from "./pages/Investments"
+import Goals from "./pages/Goals"
+import Profile from "./pages/Profile"
+import Settings from "./pages/Settings"
+import Reports from "./pages/Reports"
 
-const cardData = [
-    {
-        id: 1,
-        title: "Saldo Total",
-        value: "R$ 15.500,00",
-        change: "+2.5%",
-        icon: "bi-wallet2",
-        color: "var(--color-neon-green)",
-        degrade: "var(--degrade-subtle-green)",
-    },
-    {
-        id: 2,
-        title: "Receitas do Mês",
-        value: "R$ 6.200,00",
-        change: "+12.0%",
-        icon: "bi-arrow-up-circle",
-        color: "var(--color-neon-blue)",
-        degrade: "var(--degrade-subtle-blue)",
-    },
-    {
-        id: 3,
-        title: "Despesas do Mês",
-        value: "R$ 4.500,00",
-        change: "-5.3%",
-        icon: "bi-arrow-down-circle",
-        color: "var(--color-neon-red)",
-        degrade: "var(--degrade-subtle-red)",
-    },
-    {
-        id: 4,
-        title: "Economia Líquida",
-        value: "R$ 1.700,00",
-        change: "+25.8%",
-        icon: "bi-piggy-bank",
-        color: "var(--color-neon-yellow)",
-        degrade: "var(--degrade-subtle-yellow)",
-    },
-]
+function App() {
+    const [currentPage, setCurrentPage] = useState("dashboard")
 
-function HomeDashboard() {
+    const renderPage = () => {
+        switch (currentPage) {
+            case "dashboard":
+                return <Dashboard />
+            case "transactions":
+                return <Transactions />
+            case "investments":
+                return <Investments />
+            case "goals":
+                return <Goals />
+            case "profile":
+                return <Profile />
+            case "settings":
+                return <Settings />
+            case "reports":
+                return <Reports />
+            default:
+                return <Dashboard />
+        }
+    }
+
     return (
-        <main className="dashboard-main">
-            <h1>Dashboard Financeiro</h1>
-            <p className="welcome-message">Bem-vindo(a) de volta! Veja o panorama mensal dos seus investimentos.</p>
-
-            <div className="balance-card-grid">
-                {cardData.map((card) => (
-                    <BalanceCard
-                        key={card.id}
-                        title={card.title}
-                        value={card.value}
-                        change={card.change}
-                        iconClass={card.icon}
-                        colorVar={card.color}
-                        colorDegrade={card.degrade}
-                    />
-                ))}
-            </div>
-
-            <div className="dashboard-content-grid">
-                <div className="left-column">
-                    <RevenueExpenseChart />
-                    <RecentTransactions />
-                </div>
-                <div className="right-column">
-                    <FinancialPet financialHealthPercentage={75} />
-                    <GoalTracker />
-                </div>
-            </div>
-        </main>
+        <>
+            <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            {renderPage()}
+        </>
     )
 }
 
-export default function App() {
-    return (
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<HomeDashboard />} />
-                <Route path="/reports" element={<ReportsPage />} />
-                <Route path="/goals" element={<GoalsPage />} />
-            </Routes>
-        </Router>
-    )
-}
+export default App

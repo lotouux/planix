@@ -1,165 +1,30 @@
-@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-
   --color-neon-green: #4cc882;
   --color-bg-dark: #0d1115;
   --color-bg-black: #0a0c0d;
   --color-bg-primary: #0b0d10;
   --color-dark-blue: #090c10;
-
   --color-subtle-glow: rgba(104, 226, 214, 0.527);
-
   --color-neon-blue: #664ce8;
   --color-neon-red: #e44d26;
   --color-neon-yellow: #f8c84d;
   --color-neon-blue-light: #66ccff;
-
   --color-bg-hover: #18222a;
-
   --degrade-subtle-green: linear-gradient(140deg, rgba(2, 28, 15, 0.884), var(--color-bg-black));
   --degrade-subtle-blue: linear-gradient(140deg, rgba(19, 4, 50, 0.856), var(--color-bg-black));
   --degrade-subtle-red: linear-gradient(140deg, rgba(40, 12, 4, 0.884), var(--color-bg-black));
   --degrade-subtle-yellow: linear-gradient(140deg, rgba(34, 26, 5, 0.887), var(--color-bg-black));
-
-  --degrade-border-green: linear-gradient(to right, #4cc888, #4cc88800);
-  --degrade-border-blue: linear-gradient(to right, #4cd0e8, #4cd0e800);
-  --degrade-border-red: linear-gradient(to right, #e44d26, #e44d2600);
-  --degrade-border-yellow: linear-gradient(to right, #f8c84d, #f8c84d00);
-  --border-thickness: 0.1px;
-
   --degrade-subtle-header: linear-gradient(90deg, rgba(76, 200, 120, 0.03), var(--color-bg-dark));
   --degrade-subtle-footer: linear-gradient(0deg, rgba(76, 200, 120, 0.03), var(--color-bg-dark));
-
   --max-content-width: 1400px;
   --padding-side: 1.5rem;
   --padding-side-dashboard: 3rem;
-
   --pet-health-color: #1a4d30;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
-}
-
-@theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -175,11 +40,9 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-/* ======================================= 1. NAVBAR GERAL ======================================= */
 nav {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   width: 100%;
   padding: 1rem 0 0.5rem 0;
   background-color: var(--color-bg-primary);
@@ -192,7 +55,6 @@ nav {
   padding: 0 var(--padding-side);
 }
 
-/* TOPO */
 .nav-top-row {
   display: flex;
   justify-content: space-between;
@@ -200,18 +62,15 @@ nav {
   width: 100%;
 }
 
-/* LOGO */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-neon-green);
 }
 
-.logo img {
-  height: 50px;
-}
-
-/* SEPARATOR */
 .separator {
   width: 2px;
   height: 28px;
@@ -219,13 +78,11 @@ nav {
   border-radius: 2px;
 }
 
-/* TEXTO DA PÁGINA */
 .current-page {
   color: #aaaaaa;
   font-weight: 300;
 }
 
-/* SEARCH E AI */
 .search-container {
   display: flex;
   flex-grow: 1;
@@ -234,7 +91,6 @@ nav {
   max-width: 600px;
 }
 
-/* Fundo mais escuro para Search e Ask AI */
 .search-field-style {
   display: flex;
   align-items: center;
@@ -252,6 +108,12 @@ nav {
   flex-grow: 1;
   max-width: 500px;
   gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.search i {
+  color: #aaa;
 }
 
 .search-input {
@@ -260,16 +122,23 @@ nav {
   outline: none;
   color: #e0e0e0;
   font-size: 1rem;
+  flex-grow: 1;
 }
 
 .ask-ai {
   gap: 6px;
   cursor: pointer;
   transition: background 0.2s;
+  display: flex;
+  align-items: center;
 }
 
 .ask-ai:hover {
   background-color: #1a1e20;
+}
+
+.ai-icon {
+  color: #aaa;
 }
 
 .ai-button {
@@ -278,7 +147,6 @@ nav {
   font-weight: 500;
 }
 
-/* ======================================= 2. NOTIFICAÇÕES E PERFIL ======================================= */
 .nav-actions {
   width: 250px;
   display: flex;
@@ -288,7 +156,6 @@ nav {
   position: relative;
 }
 
-/* Wrapper para os ícones de ação */
 .nav-action-wrapper {
   position: relative;
   display: flex;
@@ -312,13 +179,11 @@ nav {
   justify-content: center;
 }
 
-/* Ícone de Notificação */
 .notification-icon i {
   font-size: 1.2rem;
   color: #aaa;
 }
 
-/* Badge */
 .notification-badge {
   position: absolute;
   top: -4px;
@@ -332,7 +197,6 @@ nav {
   z-index: 9;
 }
 
-/* Ícone de Perfil */
 .profile-avatar i {
   font-size: 1.4rem;
   color: #aaa;
@@ -343,8 +207,6 @@ nav {
   color: var(--color-neon-green);
 }
 
-/* ======================================= 3. LINKS DE NAVEGAÇÃO ======================================= */
-/* DIVISOR */
 .nav-divider {
   width: 100%;
   height: 1px;
@@ -352,13 +214,11 @@ nav {
   margin: 15px 0;
 }
 
-/* SEGUNDA LINHA */
 .full-width {
   width: 100vw;
   margin-left: calc(-1 * (100vw - 100%) / 2);
 }
 
-/* LINKS DE NAVEGAÇÃO */
 .nav-links {
   display: flex;
   align-items: center;
@@ -367,7 +227,6 @@ nav {
   margin-bottom: 5px;
 }
 
-/* Título "Menu" */
 .nav-links-title {
   color: #aaa;
   font-weight: 300;
@@ -375,25 +234,21 @@ nav {
   margin-right: 2.5rem;
 }
 
-/* DROPDOWN */
 .nav-item {
   position: relative;
   margin-right: 2.5rem;
 }
 
-/* Alinha o link 'Home' */
 .nav-links .nav-item:first-child {
   margin-left: -2.5rem;
   margin-right: 2.5rem;
 }
 
-/* Remove o margin-right do ÚLTIMO item */
 .nav-item:last-child {
   margin-right: 0;
 }
 
-/* Texto dos links */
-.nav-item > a {
+.nav-item>a {
   text-decoration: none;
   color: #e0e0e0;
   font-weight: 500;
@@ -401,9 +256,10 @@ nav {
   align-items: center;
   gap: 5px;
   font-size: 0.85rem;
+  cursor: pointer;
 }
 
-.nav-item > a:hover {
+.nav-item>a:hover {
   color: var(--color-neon-green);
 }
 
@@ -429,6 +285,7 @@ nav {
   padding: 0.8rem 1.2rem;
   color: #cfcfcf;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .dropdown a:hover {
@@ -443,12 +300,11 @@ nav {
   transform: translateX(-50%) scale(1);
 }
 
-.nav-item:hover > a span {
+.nav-item:hover>a span {
   transform: rotate(180deg);
   transition: 0.3s;
 }
 
-/* ======================================= 4. PAINEL DE NOTIFICAÇÕES ======================================= */
 .panel-overlay {
   position: fixed;
   top: 0;
@@ -488,7 +344,6 @@ nav {
   transform: translateX(0);
 }
 
-/* HEADER */
 .panel-header {
   background-image: var(--degrade-subtle-header);
   display: flex;
@@ -519,7 +374,6 @@ nav {
   color: var(--color-neon-green);
 }
 
-/* LISTA */
 .notification-list {
   background-color: var(--color-bg-dark);
   flex-grow: 1;
@@ -543,7 +397,6 @@ nav {
 .notification-item:hover {
   background-color: #111;
   box-shadow: 0 0 10px rgba(76, 200, 136, 0.5);
-  transition: background-color 0.2s, box-shadow 0.3s ease-out;
 }
 
 .notification-content {
@@ -562,13 +415,6 @@ nav {
   font-size: 0.7rem;
   color: #888;
   margin-top: 5px;
-  padding-left: 0;
-}
-
-.notification-item.unread {
-  box-shadow: 0 0 5px rgba(76, 200, 136, 0.1);
-  background-color: var(--color-bg-dark);
-  background-image: var(--degrade-subtle-header);
 }
 
 .notification-item i {
@@ -578,7 +424,6 @@ nav {
   flex-shrink: 0;
 }
 
-/* RODAPÉ */
 .view-all-link {
   background-image: var(--degrade-subtle-footer);
   display: block;
@@ -590,8 +435,6 @@ nav {
   padding: 15px 0;
   margin-top: auto;
   border-top: 1px solid rgba(76, 200, 136, 0.2);
-  position: relative;
-  overflow: hidden;
 }
 
 .view-all-link:hover {
@@ -602,14 +445,6 @@ nav {
   text-underline-offset: 4px;
 }
 
-.view-all-link::after,
-.view-all-link:hover::after {
-  display: none;
-}
-
-/* ======================================= 5. CARDS DE SALDO E DASHBOARD ======================================= */
-
-/* Área Principal Centralizada */
 .dashboard-main {
   display: block;
   width: 100%;
@@ -619,7 +454,6 @@ nav {
   position: relative;
 }
 
-/* Container de 4 Colunas */
 .balance-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -628,7 +462,6 @@ nav {
   width: 100%;
 }
 
-/* Estilo Base do Card */
 .balance-card {
   background-color: var(--color-bg-dark);
   background-image: var(--card-degrade);
@@ -644,10 +477,8 @@ nav {
   transform: translateY(-5px) scale(1.02);
   background-color: var(--color-bg-hover);
   box-shadow: 0 0 20px var(--color-neon-green);
-  border-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Conteúdo do Card */
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -694,7 +525,6 @@ nav {
   color: var(--color-neon-red);
 }
 
-/* ======================================= 6. ESTILOS DA PÁGINA PRINCIPAL ======================================= */
 .dashboard-main h1 {
   font-size: 2.5rem;
   font-weight: 600;
@@ -702,13 +532,12 @@ nav {
   margin-bottom: 5px;
 }
 
-.dashboard-main .welcome-message {
+.welcome-message {
   font-size: 1rem;
   font-weight: 300;
   color: #888888;
 }
 
-/* Container para organizar o Gráfico/Tabela e o Pet Lado a Lado */
 .dashboard-content-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -723,7 +552,6 @@ nav {
   flex-direction: column;
   gap: 30px;
   width: 100%;
-  height: 100%;
 }
 
 .right-column {
@@ -731,50 +559,7 @@ nav {
   flex-direction: column;
   gap: 30px;
   width: 100%;
-  height: 100%;
 }
-
-/* ======================================= 7. RESPONSIVO ======================================= */
-@media (max-width: 1024px) {
-  .dashboard-content-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .balance-card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboard-main {
-    padding: 1.5rem var(--padding-side);
-  }
-
-  .balance-card-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .dashboard-content-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .right-column {
-    position: relative;
-    top: 0;
-  }
-
-  .card-title {
-    font-size: 0.8rem;
-  }
-
-  .card-value {
-    font-size: 1.8rem;
-  }
-}
-
-/* ======================================= 8. GRÁFICO DE RECEITAS VS DESPESAS ======================================= */
 
 .chart-section {
   width: 100%;
@@ -784,6 +569,7 @@ nav {
 .chart-container {
   width: 100%;
   height: 350px;
+  /* Altura fixa para telas maiores */
   background-color: var(--color-bg-dark);
   border-radius: 12px;
   padding: 20px;
@@ -792,7 +578,6 @@ nav {
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
-/* Pseudo-elemento para a Borda Colorida Animada */
 .chart-container::before {
   content: "";
   position: absolute;
@@ -802,14 +587,12 @@ nav {
   bottom: 0;
   border-radius: 12px;
   padding: 2px;
-  background: linear-gradient(
-    45deg,
-    var(--color-neon-green),
-    var(--color-neon-blue),
-    var(--color-neon-red),
-    var(--color-neon-yellow),
-    var(--color-neon-green)
-  );
+  background: linear-gradient(45deg,
+      var(--color-neon-green),
+      var(--color-neon-blue),
+      var(--color-neon-red),
+      var(--color-neon-yellow),
+      var(--color-neon-green));
   background-size: 400% 400%;
   animation: gradientBorder 8s ease infinite;
   z-index: 0;
@@ -818,7 +601,6 @@ nav {
   mask-composite: exclude;
 }
 
-/* Animação do Gradiente da Borda */
 @keyframes gradientBorder {
   0% {
     background-position: 0% 50%;
@@ -833,7 +615,6 @@ nav {
   }
 }
 
-/* Estilos para Título e Subtítulo DENTRO do Gráfico */
 .chart-internal-header {
   position: absolute;
   top: 20px;
@@ -858,31 +639,10 @@ nav {
   font-weight: 300;
 }
 
-/* Efeito de Hover na Div do Gráfico */
 .chart-container:hover {
   transform: scale(1.02);
-  z-index: 2;
   box-shadow: 0 0 20px var(--color-neon-green);
 }
-
-/* Estilo para Tooltip */
-.recharts-tooltip-wrapper {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--color-neon-green) !important;
-  border-radius: 4px;
-  padding: 8px;
-  color: #e0e0e0;
-  font-size: 0.85rem;
-  box-shadow: 0 0 10px rgba(76, 200, 136, 0.5);
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-
-.recharts-wrapper {
-  position: relative;
-  z-index: 1;
-}
-
-/* ======================================= 9. TABELA DE TRANSAÇÕES RECENTES ======================================= */
 
 .transactions-section {
   width: 100%;
@@ -890,7 +650,6 @@ nav {
   margin-bottom: 40px;
 }
 
-/* O contêiner principal da tabela usará o mesmo design do gráfico */
 .transactions-container {
   width: 100%;
   height: auto;
@@ -903,7 +662,6 @@ nav {
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
-/* Pseudo-elemento para a Borda Colorida Animada */
 .transactions-container::before {
   content: "";
   position: absolute;
@@ -913,14 +671,12 @@ nav {
   bottom: 0;
   border-radius: 12px;
   padding: 2px;
-  background: linear-gradient(
-    45deg,
-    var(--color-neon-green),
-    var(--color-neon-blue),
-    var(--color-neon-red),
-    var(--color-neon-yellow),
-    var(--color-neon-green)
-  );
+  background: linear-gradient(45deg,
+      var(--color-neon-green),
+      var(--color-neon-blue),
+      var(--color-neon-red),
+      var(--color-neon-yellow),
+      var(--color-neon-green));
   background-size: 400% 400%;
   animation: gradientBorder 8s ease infinite;
   z-index: 0;
@@ -929,16 +685,15 @@ nav {
   mask-composite: exclude;
 }
 
-/* Efeito de Hover na Div da Tabela */
 .transactions-container:hover {
   transform: scale(1.01);
-  z-index: 2;
   box-shadow: 0 0 15px var(--color-neon-green);
 }
 
-/* Estilos Internos */
 .transactions-header {
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .transactions-title {
@@ -951,7 +706,6 @@ nav {
   color: var(--color-neon-blue);
 }
 
-/* Estilo da Tabela */
 .transactions-table {
   width: 100%;
   border-collapse: collapse;
@@ -978,7 +732,6 @@ nav {
   font-weight: 300;
 }
 
-/* Efeito zebra/hover nas linhas */
 .transactions-table tr:nth-child(even) {
   background-color: #0c1014;
 }
@@ -988,7 +741,6 @@ nav {
   cursor: pointer;
 }
 
-/* Estilos para valores */
 .transaction-type-income {
   color: var(--color-neon-green);
   font-weight: 500;
@@ -998,8 +750,6 @@ nav {
   color: var(--color-neon-red);
   font-weight: 500;
 }
-
-/* ======================================= 10. PET FINANCEIRO (FINO-BOT) ======================================= */
 
 .pet-card {
   height: auto;
@@ -1013,19 +763,17 @@ nav {
   align-items: center;
   justify-content: flex-start;
   border: 1px solid var(--color-neon-green);
-  box-shadow: none;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .pet-card:hover {
   transform: scale(1.02);
-  z-index: 2;
   box-shadow: 0 0 20px var(--color-neon-green);
 }
 
-/* Título e subtítulo pequenos */
 .pet-header {
-  text-align: center;
+  text-align: left;
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -1035,6 +783,7 @@ nav {
   color: var(--color-neon-green);
   letter-spacing: 0.5px;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .pet-subtitle {
@@ -1043,7 +792,6 @@ nav {
   margin-top: 2px;
 }
 
-/* Container do mascote */
 .pet-image-container {
   width: 150px;
   height: 150px;
@@ -1055,7 +803,6 @@ nav {
   justify-content: center;
 }
 
-/* === CORPO DO BOT === */
 .fino-bot {
   position: relative;
   overflow: visible;
@@ -1065,12 +812,11 @@ nav {
   border-radius: 50%;
   border: 4px solid #fff;
   box-shadow: 0 0 20px var(--color-neon-green), inset 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.5s ease-out;
   animation: mascot-float 4s infinite ease-in-out;
 }
 
-/* Flutuação */
 @keyframes mascot-float {
+
   0%,
   100% {
     transform: translateY(0);
@@ -1081,7 +827,6 @@ nav {
   }
 }
 
-/* Antena */
 .fino-bot::before {
   content: "";
   position: absolute;
@@ -1094,7 +839,6 @@ nav {
   border-radius: 50% 50% 0 0;
 }
 
-/* Olhos */
 .fino-bot-eye {
   position: absolute;
   width: 26px;
@@ -1106,7 +850,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
 }
 
 .fino-bot-eye.left {
@@ -1117,7 +860,6 @@ nav {
   right: 18px;
 }
 
-/* Pupilas */
 .fino-bot-pupil {
   width: 17px;
   height: 17px;
@@ -1140,6 +882,7 @@ nav {
 }
 
 @keyframes lookAround {
+
   0%,
   30%,
   100% {
@@ -1155,7 +898,6 @@ nav {
   }
 }
 
-/* Boca */
 .fino-bot-mouth {
   position: absolute;
   bottom: 22px;
@@ -1167,8 +909,6 @@ nav {
   border-radius: 0;
   transition: all 0.5s ease;
 }
-
-/* === EXPRESSÕES === */
 
 .fino-bot.excellent .fino-bot-mouth {
   width: 20px;
@@ -1182,17 +922,6 @@ nav {
 
 .fino-bot.excellent .fino-bot-eye {
   transform: scaleY(0.95);
-}
-
-.fino-bot.excellent::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2;
-  background: radial-gradient(circle at 30% 60%, rgba(255, 130, 130, 0.5) 8%, transparent 25%),
-    radial-gradient(circle at 70% 60%, rgba(255, 130, 130, 0.5) 8%, transparent 25%);
 }
 
 .fino-bot.healthy .fino-bot-mouth {
@@ -1226,7 +955,6 @@ nav {
   box-shadow: 0 0 5px var(--color-neon-red);
 }
 
-/* === ESTADO DO PET === */
 .pet-state {
   margin-top: 5px;
   font-size: 0.8rem;
@@ -1249,14 +977,12 @@ nav {
   }
 }
 
-/* === STATUS FINANCEIRO === */
 .pet-status {
   width: 100%;
   margin-top: 15px;
   position: relative;
 }
 
-/* Título "Saúde financeira" */
 .pet-status h3 {
   font-size: 0.8rem;
   font-weight: 500;
@@ -1265,7 +991,6 @@ nav {
   text-align: left;
 }
 
-/* Porcentagem à direita */
 .health-percentage {
   position: absolute;
   top: 0;
@@ -1275,7 +1000,6 @@ nav {
   font-weight: 600;
 }
 
-/* Barra de saúde */
 .health-bar-container {
   width: 100%;
   background-color: #222;
@@ -1295,7 +1019,6 @@ nav {
   box-shadow: 0 0 12px var(--color-neon-green);
 }
 
-/* Mensagem final */
 .pet-message {
   margin-top: 14px;
   background-color: rgba(40, 40, 40, 0.5);
@@ -1306,8 +1029,6 @@ nav {
   color: #e0e0e0;
   border: 1px solid rgba(76, 200, 136, 0.3);
 }
-
-/* ======================================= 11. TRACKER DE METAS ======================================= */
 
 .goal-tracker-card {
   width: 100%;
@@ -1320,7 +1041,6 @@ nav {
   border: none;
 }
 
-/* Pseudo-elemento para a Borda Colorida Animada */
 .goal-tracker-card::before {
   content: "";
   position: absolute;
@@ -1330,14 +1050,12 @@ nav {
   bottom: 0;
   border-radius: 12px;
   padding: 2px;
-  background: linear-gradient(
-    45deg,
-    var(--color-neon-green),
-    var(--color-neon-blue),
-    var(--color-neon-red),
-    var(--color-neon-yellow),
-    var(--color-neon-green)
-  );
+  background: linear-gradient(45deg,
+      var(--color-neon-green),
+      var(--color-neon-blue),
+      var(--color-neon-red),
+      var(--color-neon-yellow),
+      var(--color-neon-green));
   background-size: 400% 400%;
   animation: gradientBorder 8s ease infinite;
   z-index: 0;
@@ -1346,20 +1064,16 @@ nav {
   mask-composite: exclude;
 }
 
-/* Efeito de Hover */
 .goal-tracker-card:hover {
   transform: scale(1.01);
-  z-index: 2;
   box-shadow: 0 0 15px var(--color-neon-green);
 }
 
-/* Conteúdo interno */
 .goal-tracker-content-wrapper {
   position: relative;
   z-index: 1;
 }
 
-/* TÍTULOS E BOTÕES */
 .goal-tracker-header {
   display: flex;
   justify-content: space-between;
@@ -1379,7 +1093,6 @@ nav {
   font-size: 0.9rem;
 }
 
-/* Botão Neon */
 .btn-neon-goal {
   background: none;
   border: 1px solid var(--color-neon-green);
@@ -1400,14 +1113,12 @@ nav {
   transform: translateY(-1px);
 }
 
-/* LISTA DE METAS */
 .goals-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Item de Meta */
 .goal-item {
   background-color: transparent;
   padding: 10px 0;
@@ -1434,7 +1145,6 @@ nav {
   font-weight: 500;
 }
 
-/* Ícone de Meta */
 .goal-icon {
   font-size: 1.2rem;
   margin-right: 12px;
@@ -1448,7 +1158,6 @@ nav {
   align-items: center;
 }
 
-/* BARRA DE PROGRESSO */
 .goal-progress-container {
   display: flex;
   align-items: center;
@@ -1462,7 +1171,6 @@ nav {
   background-color: #1a1a1a;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: none;
 }
 
 .goal-progress-fill {
@@ -1476,7 +1184,6 @@ nav {
   font-weight: 600;
 }
 
-/* VALORES */
 .goal-values {
   display: flex;
   justify-content: flex-end;
@@ -1498,4 +1205,165 @@ nav {
   text-align: right;
   margin-top: 5px;
   font-size: 0.8rem;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding: 1.5rem var(--padding-side);
+  }
+
+  .balance-card-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .nav-search-container {
+    max-width: 100%;
+  }
+
+  .notification-panel {
+    width: 100%;
+  }
+}
+
+/* =========================
+    🔹 RESPONSIVIDADE GERAL
+========================= */
+
+/* Telas menores que 1024px (laptops pequenos / tablets na horizontal) */
+@media (max-width: 1024px) {
+  .dashboard-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dashboard-main {
+    padding: 2rem 1.5rem;
+  }
+
+  .balance-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* Telas menores que 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+
+  /* Navbar reorganizada em colunas */
+  .nav-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-container {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-field-style {
+    width: 100%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-item {
+    margin: 0.5rem 1rem 0.5rem 0;
+  }
+
+  .notification-panel {
+    width: 100%;
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .chart-container,
+  .transactions-container {
+    height: auto;
+    /* Remove a altura fixa */
+    min-height: 250px;
+    /* Adiciona uma altura mínima para visualização decente */
+    padding: 15px;
+    /* Ajusta o padding */
+  }
+}
+
+/* Telas menores que 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-item>a {
+    font-size: 0.8rem;
+  }
+
+  .dashboard-main h1 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-message {
+    font-size: 0.9rem;
+  }
+
+  .balance-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-value {
+    font-size: 1.6rem;
+  }
+
+  .chart-container,
+  .transactions-container {
+    padding: 15px;
+    min-height: 200px;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .goal-tracker-card {
+    padding: 15px;
+  }
 }

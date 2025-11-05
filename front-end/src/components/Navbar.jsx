@@ -1,46 +1,70 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import NotificationPanel from './NotificationPanel';
-import "bootstrap-icons/font/bootstrap-icons.css";
-import PlanixDark from '../assets/Planix_dark.png';
+import { useState } from "react"
+import NotificationPanel from "./NotificationPanel"
+import Logo from "../assets/Planix_dark.png"
 
-// Estrutura de links para fácil iteração
 const navLinks = [
     {
         title: "Home",
-        dropdown: [{ name: "Visão Geral", href: "/" }, { name: "Relatórios", href: "/reports" }]
+        dropdown: [
+            { name: "Visão Geral", page: "dashboard" },
+            { name: "Relatórios", page: "reports" },
+        ],
     },
     {
         title: "Metas",
-        dropdown: [{ name: "Minhas Metas", href: "/goals" }, { name: "Nova Meta", href: "#" }]
+        dropdown: [
+            { name: "Minhas Metas", page: "goals" },
+        ],
     },
     {
         title: "Transações",
-        dropdown: [{ name: "Minhas Transações", href: "#" }, { name: "Nova Transação", href: "#" }]
+        dropdown: [
+            { name: "Minhas Transações", page: "transactions" },
+        ],
     },
     {
         title: "Investimentos",
-        dropdown: [{ name: "Carteira", href: "#" }, { name: "Aportes", href: "#" }]
+        dropdown: [
+            { name: "Carteira", page: "investments" },
+        ],
     },
     {
         title: "Configurações",
-        href: "#"
+        page: "settings",
     },
-];
+]
 
-export default function Navbar() {
-    const [isPanelActive, setIsPanelActive] = useState(false);
-    const notificationCount = 3;
+export default function Navbar({ currentPage, setCurrentPage }) {
+    const [isPanelActive, setIsPanelActive] = useState(false)
+    const notificationCount = 3
+
+    const getPageTitle = (page) => {
+        const titles = {
+            dashboard: "Dashboard",
+            transactions: "Transações",
+            investments: "Investimentos",
+            goals: "Metas",
+            profile: "Perfil",
+            settings: "Configurações",
+            reports: "Relatórios",
+        }
+        return titles[page] || "Home"
+    }
 
     return (
         <nav>
             <div className="nav-content-wrapper">
                 <div className="nav-top-row">
                     <div className="logo">
-                        <img src={PlanixDark} alt="Logo" />
+                        <img
+                            src={Logo}
+                            alt="Planix Logo"
+                            style={{ height: "35px", width: "auto", objectFit: "contain" }}
+                        />
                         <div className="separator"></div>
-                        <span className="current-page">Home</span>
+                        <span className="current-page">{getPageTitle(currentPage)}</span>
                     </div>
+
 
                     <div className="search-container">
                         <div className="search search-field-style">
@@ -49,25 +73,27 @@ export default function Navbar() {
                         </div>
                         <div className="ask-ai search-field-style">
                             <i className="bi bi-robot ai-icon"></i>
-                            <a href="#" className="ai-button">ASK AI</a>
+                            <a href="#" className="ai-button">
+                                ASK AI
+                            </a>
                         </div>
                     </div>
 
                     <div className="nav-actions">
-                        <div
-                            className="nav-action-wrapper"
-                            onClick={() => setIsPanelActive(true)}
-                            style={{ cursor: 'pointer' }}
-                        >
+                        <div className="nav-action-wrapper" onClick={() => setIsPanelActive(true)} style={{ cursor: "pointer" }}>
                             <div className="notification-icon">
                                 <i className="bi bi-bell"></i>
                                 <span className="notification-badge">{notificationCount}</span>
                             </div>
                         </div>
 
-                        <a href="#" className="nav-action-wrapper profile-avatar">
+                        <div
+                            className="nav-action-wrapper profile-avatar"
+                            onClick={() => setCurrentPage("profile")}
+                            style={{ cursor: "pointer" }}
+                        >
                             <i className="bi bi-person"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,16 +103,33 @@ export default function Navbar() {
             <div className="nav-content-wrapper">
                 <div className="nav-links">
                     <span className="nav-links-title">Menu</span>
-                    {navLinks.map(item => (
+                    {navLinks.map((item) => (
                         <div className="nav-item" key={item.title}>
-                            <Link to={item.href || "#"}>
+                            <a
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    if (item.page) setCurrentPage(item.page)
+                                }}
+                                style={{ textDecoration: "none" }}
+                            >
                                 {item.title}
                                 {item.dropdown && <span>▼</span>}
-                            </Link>
+                            </a>
                             {item.dropdown && (
                                 <div className="dropdown">
-                                    {item.dropdown.map(link => (
-                                        <Link key={link.name} to={link.href}>{link.name}</Link>
+                                    {item.dropdown.map((link) => (
+                                        <a
+                                            key={link.name}
+                                            href="#"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setCurrentPage(link.page)
+                                            }}
+                                            style={{ textDecoration: "none" }}
+                                        >
+                                            {link.name}
+                                        </a>
                                     ))}
                                 </div>
                             )}
@@ -98,5 +141,5 @@ export default function Navbar() {
             <div className="nav-divider full-width"></div>
             <NotificationPanel isActive={isPanelActive} onClose={() => setIsPanelActive(false)} />
         </nav>
-    );
+    )
 }
