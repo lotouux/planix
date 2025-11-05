@@ -112,8 +112,11 @@ nav {
   align-items: center;
 }
 
-.search i {
+.search i,
+.search-field-style i {
   color: #aaa;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .search-input {
@@ -665,6 +668,7 @@ nav {
 }
 
 .transactions-container {
+  z-index: 100;
   width: 100%;
   height: auto;
   min-height: 350px;
@@ -694,6 +698,7 @@ nav {
   background-size: 400% 400%;
   animation: gradientBorder 8s ease infinite;
   z-index: 0;
+  pointer-events: none;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

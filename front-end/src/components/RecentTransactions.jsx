@@ -41,7 +41,14 @@ const transactionsData = [
     },
 ]
 
-const RecentTransactions = () => {
+const RecentTransactions = ({ setCurrentPage }) => {
+
+    const handleViewAllClick = (e) => {
+        e.preventDefault();
+
+        setCurrentPage("transactions");
+    };
+
     const formatAmount = (amount, type) => {
         const sign = type === "expense" ? "-" : "+"
         const colorClass = type === "expense" ? "transaction-type-expense" : "transaction-type-income"
@@ -83,7 +90,11 @@ const RecentTransactions = () => {
                     </tbody>
                 </table>
 
-                <a href="#" className="view-all-link">
+                <a
+                    href="#"
+                    className="view-all-link"
+                    onClick={handleViewAllClick}
+                >
                     Ver Todas as Transações &rarr;
                 </a>
             </div>

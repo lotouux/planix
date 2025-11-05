@@ -43,7 +43,7 @@ const cardData = [
     },
 ]
 
-export default function Dashboard() {
+export default function Dashboard({ setCurrentPage }) {
     return (
         <main className="dashboard-main">
             <h1>Dashboard Financeiro</h1>
@@ -66,7 +66,7 @@ export default function Dashboard() {
             <div className="dashboard-content-grid">
                 <div className="left-column">
                     <RevenueExpenseChart />
-                    <RecentTransactions />
+                    <RecentTransactions setCurrentPage={setCurrentPage} />
                 </div>
                 <div className="right-column">
                     <FinancialPet financialHealthPercentage={75} />
