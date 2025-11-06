@@ -71,20 +71,23 @@ Create, track, and achieve your goals:
 
    ```bash
    git clone https://github.com/lotouux/planix.git
-   cd planix/backend
    ```
-2. Install dependencies:
+2. Configure the environment:
 
-   ```bash
-   npm install
-   ```
-3. Configure the `.env` file with the database credentials.
-4. Start the server:
+   Make sure your application.properties file (or .env if used) contains the correct database credentials.
+   
+3. Running the backend:
 
+   To start the backend, you need to run the Spring Boot application tests:
    ```bash
-   npm start
+   back-end\src\test\java\com\fiap\Planix\PlanixApplicationTests.java
    ```
-5. The backend will be running at: **[http://localhost:5000](http://localhost:5000)**
+
+4. The backend will be running at: **[http://localhost:8081](http://localhost:8081)**
+
+> When the project is running, new tables are automatically created in the database.
+When you stop the project, these tables are dropped.
+This approach allows the frontend to connect and test the application even without manually creating tables.
 
 ---
 
