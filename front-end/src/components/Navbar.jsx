@@ -30,13 +30,17 @@ const navLinks = [
     },
     {
         title: "Configurações",
-        page: "settings",
+        dropdown: [
+            { name: "Configurações Gerais", page: "settings" },
+            { name: "Perfil", page: "profile" },
+            { name: "Sair", page: "logout", isLogout: true }, 
+        ],
     },
 ]
 
-export default function Navbar({ currentPage, setCurrentPage }) {
+export default function Navbar({ currentPage, setCurrentPage, onLogout }) { 
     const [isPanelActive, setIsPanelActive] = useState(false)
-    const notificationCount = 3
+    const notificationCount = 3 
 
     const getPageTitle = (page) => {
         const titles = {
@@ -47,8 +51,17 @@ export default function Navbar({ currentPage, setCurrentPage }) {
             profile: "Perfil",
             settings: "Configurações",
             reports: "Relatórios",
+            logout: "Sair", 
         }
-        return titles[page] || "Home"
+        return titles[page] || "Planix"
+    }
+
+    const handleLinkClick = (page, isLogout) => {
+        if (isLogout) {
+            onLogout()
+        } else {
+            setCurrentPage(page)
+        }
     }
 
     return (
@@ -64,7 +77,6 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         <div className="separator"></div>
                         <span className="current-page">{getPageTitle(currentPage)}</span>
                     </div>
-
 
                     <div className="search-container">
                         <div className="search search-field-style">
@@ -96,50 +108,59 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="nav-divider"></div>
+                <div className="nav-divider"></div>
 
-            <div className="nav-content-wrapper">
-                <div className="nav-links">
-                    <span className="nav-links-title">Menu</span>
-                    {navLinks.map((item) => (
-                        <div className="nav-item" key={item.title}>
-                            <a
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    if (item.page) setCurrentPage(item.page)
-                                }}
-                                style={{ textDecoration: "none" }}
-                            >
-                                {item.title}
-                                {item.dropdown && <span>▼</span>}
-                            </a>
-                            {item.dropdown && (
-                                <div className="dropdown">
-                                    {item.dropdown.map((link) => (
-                                        <a
-                                            key={link.name}
-                                            href="#"
-                                            onClick={(e) => {
-                                                e.preventDefault()
-                                                setCurrentPage(link.page)
-                                            }}
-                                            style={{ textDecoration: "none" }}
-                                        >
-                                            {link.name}
-                                        </a>
-                                    ))}
+                <div className="nav-content-wrapper">
+                    <div className="nav-links">
+                        <span className="nav-links-title">Menu</span>
+                            {navLinks.map((item) => (
+                                <div key={item.title} className="nav-item">
+                                    <a
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            if (!item.dropdown) {
+                                                handleLinkClick(item.page, item.title === "Sair")
+                                            }
+                                        }}
+                                        className={
+                                            item.page === currentPage ||
+                                            item.dropdown?.some((link) => link.page === currentPage)
+                                                ? "active"
+                                                : ""
+                                        }
+                                        style={{ textDecoration: "none" }}
+                                    >
+                                        {item.title}
+                                        {item.dropdown && <span>▼</span>}
+                                    </a>
+                                    {item.dropdown && (
+                                        <div className="dropdown">
+                                            {item.dropdown.map((link) => (
+                                                <a
+                                                    key={link.name}
+                                                    href="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        handleLinkClick(link.page, link.isLogout) 
+                                                    }}
+                                                    className={link.page === currentPage ? "active-dropdown-link" : ""}
+                                                    style={{ textDecoration: "none" }}
+                                                >
+                                                    {link.name}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
-            </div>
 
-            <div className="nav-divider full-width"></div>
-            <NotificationPanel isActive={isPanelActive} onClose={() => setIsPanelActive(false)} />
+                <div className="nav-divider full-width"></div>
+                <NotificationPanel isActive={isPanelActive} onClose={() => setIsPanelActive(false)} />
         </nav>
     )
 }

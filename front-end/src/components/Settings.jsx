@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 export default function Settings() {
@@ -28,7 +26,6 @@ export default function Settings() {
             <p className="welcome-message">Personalize sua experiência no Planix.</p>
 
             <div style={{ marginTop: "30px", display: "grid", gap: "30px" }}>
-                {/* Preferências Gerais */}
                 <div className="settings-card">
                     <h2 className="settings-title">
                         <i className="bi bi-gear"></i> Preferências Gerais
@@ -90,7 +87,6 @@ export default function Settings() {
                     </div>
                 </div>
 
-                {/* Notificações */}
                 <div className="settings-card">
                     <h2 className="settings-title">
                         <i className="bi bi-bell"></i> Notificações
@@ -151,7 +147,6 @@ export default function Settings() {
                     </div>
                 </div>
 
-                {/* Privacidade e Segurança */}
                 <div className="settings-card">
                     <h2 className="settings-title">
                         <i className="bi bi-shield-check"></i> Privacidade e Segurança
@@ -180,7 +175,6 @@ export default function Settings() {
                     </div>
                 </div>
 
-                {/* Informações */}
                 <div className="settings-card">
                     <h2 className="settings-title">
                         <i className="bi bi-info-circle"></i> Informações

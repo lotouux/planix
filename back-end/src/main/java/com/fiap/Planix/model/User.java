@@ -24,9 +24,6 @@ public class User {
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    @Column(name = "cpf", length = 11, unique = true, nullable = false)
-    private String cpf;
-
     @Column(name = "phone", length = 20)
     private String phone;
 
@@ -41,14 +38,6 @@ public class User {
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
-
-    // Relacionamentos
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<AuditLog> auditLogs;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<ChatInteraction> chatInteractions;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<BankConnection> bankConnections;
@@ -102,14 +91,6 @@ public class User {
         this.password = password;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -148,22 +129,6 @@ public class User {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Set<AuditLog> getAuditLogs() {
-        return auditLogs;
-    }
-
-    public void setAuditLogs(Set<AuditLog> auditLogs) {
-        this.auditLogs = auditLogs;
-    }
-
-    public Set<ChatInteraction> getChatInteractions() {
-        return chatInteractions;
-    }
-
-    public void setChatInteractions(Set<ChatInteraction> chatInteractions) {
-        this.chatInteractions = chatInteractions;
     }
 
     public Set<BankConnection> getBankConnections() {

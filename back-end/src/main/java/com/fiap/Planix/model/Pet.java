@@ -41,9 +41,6 @@ public class Pet {
     @JoinColumn(name = "USER_id_user", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "pet", fetch = FetchType.LAZY)
-    private Set<PetStatusHistory> statusHistory;
-
     public Long getIdPet() {
         return idPet;
     }
@@ -114,13 +111,5 @@ public class Pet {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Set<PetStatusHistory> getStatusHistory() {
-        return statusHistory;
-    }
-
-    public void setStatusHistory(Set<PetStatusHistory> statusHistory) {
-        this.statusHistory = statusHistory;
     }
 }

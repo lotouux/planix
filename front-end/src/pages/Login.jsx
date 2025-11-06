@@ -1,172 +1,190 @@
 import React, { useState } from 'react';
 
-// Se você estiver usando um bundler como Webpack/Vite,
-// você importaria o seu CSS global aqui para aplicar as variáveis e resets.
-// Ex: import './caminho/para/seu/GlobalStyles.css';
+const API_URL = 'http://localhost:8081/api/auth/login';
 
-/**
- * Componente de Tela de Login
- * @param {function} onLoginSuccess - Função chamada quando o login é bem-sucedido para mudar o estado de autenticação no App.jsx.
- */
 function Login({ onLoginSuccess }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
+        setError(''); // Limpa o erro anterior
         setIsSubmitting(true);
 
         if (!email || !password) {
-            setError('Por favor, preencha todos os campos.');
+            setError('Por favor, preencha o email e a senha.');
             setIsSubmitting(false);
             return;
         }
 
-        // Simulação de requisição (substitua pela sua lógica de API real)
-        setTimeout(() => {
-            // ⚠️ Use credenciais fixas para a simulação:
-            if (email === 'teste@mail.com' && password === 'senha123') {
-
-                // 🚀 CHAMA A FUNÇÃO PARA MUDAR O ESTADO DE isLogado = true NO APP.JSX
-                onLoginSuccess();
-
-                // Mensagem de sucesso opcional
-                alert('Login bem-sucedido! Redirecionando para o Dashboard...');
-            } else {
-                // Usamos o estilo de alerta de erro do tema (cor neon-red)
-                setError('E-mail ou senha inválidos.');
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+            const responseText = await response.text();
+            let data = {};
+            
+            if (responseText) {
+                try {
+                    data = JSON.parse(responseText);
+                } catch (jsonError) {
+                    console.error('Falha ao parsear JSON:', jsonError);
+                    setError('Erro de comunicação. O servidor retornou um formato inesperado. Status: ' + response.status);
+                    setIsSubmitting(false);
+                    return;
+                }
+            } else if (!response.ok) {
+                 setError('Erro interno do servidor. A resposta estava vazia. Status: ' + response.status);
+                 setIsSubmitting(false);
+                 return;
             }
+
+            if (response.ok) {
+                if (data.userId) {
+                    console.log("Login bem-sucedido. ID do Usuário:", data.userId);
+                    onLoginSuccess(data.userId);
+                } else {
+                     setError('Login bem-sucedido, mas ID de usuário não encontrado na resposta do servidor.');
+                }
+            } else {
+                const errorMessage = data.error || `Erro de autenticação. Status: ${response.status}. Tente novamente.`;
+                setError(errorMessage);
+            }
+        } catch (err) {
+            console.error('Erro na requisição de login:', err);
+            setError('Falha na conexão com o servidor. Verifique sua rede ou a URL da API.');
+        } finally {
             setIsSubmitting(false);
-        }, 1500);
+        }
     };
 
-    /* O container principal emula o 'body' centralizando o card.
-      O card de login usa a classe .transactions-container para o fundo escuro e borda neon.
-      Os inputs usam a classe '.search-field-style' para herdar o estilo de campo.
-      O botão usa estilos adaptados de '.btn-neon-goal'.
-    */
     return (
-        <div style={styles.loginPage}>
-            {/* Container que simula um card de dashboard para o formulário. */}
-            <div className="transactions-container" style={styles.loginCard}>
-
-                {/* Título de Login usando o estilo de título de dashboard */}
-                <div className="transactions-header" style={{ marginBottom: '30px' }}>
-                    <h2 className="transactions-title" style={{ fontSize: '1.8rem' }}>
-                        Acesso <span style={{ color: 'var(--color-neon-green)' }}>Seguro</span>
-                    </h2>
-                    <p className="current-page" style={{ color: '#aaa' }}>
-                        Entre na sua conta.
-                    </p>
-                </div>
+        <div style={styles.loginContainer}>
+            <div style={styles.loginCard}>
+                <h1 style={styles.title}>Planix</h1>
+                <p style={styles.subtitle}>Seu companheiro de finanças pessoais</p>
 
                 <form onSubmit={handleSubmit} style={styles.form}>
-
-                    {/* Campo de E-mail */}
-                    <div className="search-field-style" style={styles.inputGroup}>
-                        {/* Ícone de envelope (Você precisa garantir que o Bootstrap Icons (bi) esteja incluído no seu projeto) */}
-                        <i className="bi bi-envelope-fill" style={{ color: '#aaa' }}></i>
+                    <div style={styles.inputGroup}>
+                        <label htmlFor="email" style={styles.label}>Email</label>
                         <input
                             type="email"
-                            placeholder="E-mail"
-                            className="search-input" // Usa o estilo do input de pesquisa para o campo
+                            id="email"
+                            style={styles.input}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
                             disabled={isSubmitting}
+                            required
                         />
                     </div>
 
-                    {/* Campo de Senha */}
-                    <div className="search-field-style" style={styles.inputGroup}>
-                        {/* Ícone de cadeado */}
-                        <i className="bi bi-lock-fill" style={{ color: '#aaa' }}></i>
+                    <div style={styles.inputGroup}>
+                        <label htmlFor="password" style={styles.label}>Senha</label>
                         <input
                             type="password"
-                            placeholder="Senha"
-                            className="search-input" // Usa o estilo do input de pesquisa para o campo
+                            id="password"
+                            style={styles.input}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
                             disabled={isSubmitting}
+                            required
                         />
                     </div>
 
-                    {/* Mensagem de Erro */}
-                    {error && (
-                        <p className="transaction-type-expense" style={styles.errorText}>
-                            <i className="bi bi-exclamation-triangle-fill"></i> {error}
-                        </p>
-                    )}
+                    {error && <p style={styles.errorText}>{error}</p>}
 
-                    {/* Botão de Login */}
                     <button
                         type="submit"
-                        className="btn-neon-goal"
-                        style={styles.submitButton}
+                        style={styles.button}
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (
-                            <>
-                                <i className="bi bi-arrow-repeat" style={styles.spinIcon}></i> Entrando...
-                            </>
+                            <i className="bi bi-arrow-clockwise" style={styles.spinIcon}></i>
                         ) : (
-                            'Entrar'
+                            <i className="bi bi-box-arrow-in-right"></i>
                         )}
+                        {isSubmitting ? ' Entrando...' : ' Entrar'}
                     </button>
-
-                    {/* Links de rodapé */}
-                    <div style={styles.footerLinks}>
-                        <a href="#" className="current-page" style={styles.linkStyle}>
-                            Esqueceu a senha?
-                        </a>
-                        <span style={{ color: '#444' }}>&nbsp;|&nbsp;</span>
-                        <a href="#" className="current-page" style={styles.linkStyle}>
-                            Criar Conta
-                        </a>
-                    </div>
                 </form>
+
+                <div style={styles.footerLinks}>
+                    <a href="#" style={styles.linkStyle}>Esqueceu a Senha?</a> | <a href="#" style={styles.linkStyle}>Criar Conta</a>
+                </div>
             </div>
         </div>
     );
 }
 
-// Estilos embutidos (inline styles) para regras de layout.
+export default Login;
+
 const styles = {
-    loginPage: {
+    loginContainer: {
+        minHeight: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #0b0d10 0%, #1a1a1a 100%)',
+        color: '#e0e0e0',
     },
     loginCard: {
-        padding: '40px',
         maxWidth: '400px',
-        height: 'auto',
-        minHeight: 'auto',
-        boxShadow: '0 0 15px rgba(76, 200, 136, 0.5)',
+        width: '90%',
+        padding: '40px 30px',
+        borderRadius: '10px',
+        background: 'rgba(26, 26, 26, 0.8)',
+        border: '1px solid #333',
+        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
         textAlign: 'center',
+    },
+    title: {
+        fontSize: '2.5rem',
+        fontWeight: '700',
+        color: 'var(--color-neon-green)',
+        textShadow: '0 0 10px rgba(76, 200, 136, 0.5)',
+        margin: '0 0 5px 0',
+    },
+    subtitle: {
+        fontSize: '1rem',
+        color: '#aaa',
+        marginBottom: '30px',
     },
     form: {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
-        marginTop: '20px',
     },
     inputGroup: {
-        padding: '10px 15px',
-        width: '100%',
+        textAlign: 'left',
     },
-    submitButton: {
+    label: {
+        display: 'block',
+        marginBottom: '5px',
+        fontSize: '0.9rem',
+        color: '#aaa',
+    },
+    input: {
         width: '100%',
         padding: '12px',
-        fontSize: '1.1rem',
+        background: 'var(--color-bg-black)',
+        border: '1px solid #444',
+        borderRadius: '6px',
+        color: '#e0e0e0',
+        fontSize: '1rem',
+        boxSizing: 'border-box',
+        transition: 'border-color 0.3s',
+    },
+    button: {
+        padding: '12px 20px',
+        borderRadius: '6px',
         fontWeight: '600',
-        // Usa variáveis CSS do seu tema (necessário que o CSS esteja carregado)
-        backgroundColor: 'var(--color-neon-green)',
+        fontSize: '1rem',
+        marginTop: '10px',
         color: 'var(--color-bg-primary)',
         border: 'none',
         boxShadow: '0 0 10px var(--color-neon-green)',
@@ -175,6 +193,8 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         gap: '10px',
+        background: 'linear-gradient(45deg, var(--color-neon-green), #60d69b)',
+        transition: 'all 0.3s',
     },
     errorText: {
         textAlign: 'left',
@@ -185,37 +205,27 @@ const styles = {
         backgroundColor: 'rgba(228, 77, 38, 0.1)',
         borderRadius: '4px',
         padding: '8px',
+        color: 'var(--color-neon-red)',
     },
     footerLinks: {
-        marginTop: '10px',
+        marginTop: '20px',
         fontSize: '0.9rem',
     },
     linkStyle: {
         color: '#aaa',
         textDecoration: 'none',
+        transition: 'color 0.3s',
     },
     spinIcon: {
         animation: 'spin 1s linear infinite',
     },
 };
 
-// Injeção da keyframe 'spin' (necessário se o seu CSS global não a incluir)
 const styleSheet = document.createElement('style');
 styleSheet.innerHTML = `
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-.btn-neon-goal:hover:not(:disabled) {
-  background-color: #61d999; 
-  box-shadow: 0 0 20px var(--color-neon-green);
-  transform: translateY(-2px);
-}
 `;
-// Verifica se o estilo já foi injetado para evitar duplicidade
-if (!document.head.querySelector('style[data-login-styles]')) {
-    styleSheet.setAttribute('data-login-styles', 'true');
-    document.head.appendChild(styleSheet);
-}
-
-export default Login;
+document.head.appendChild(styleSheet);

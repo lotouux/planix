@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import Navbar from "./components/Navbar"
 import Login from "./pages/Login"
@@ -13,47 +11,64 @@ import Reports from "./pages/Reports"
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [userId, setUserId] = useState(null) 
     const [currentPage, setCurrentPage] = useState("dashboard")
 
-    const handleLogin = (success) => {
-        if (success) {
+    /**
+     * Função chamada pelo componente Login em caso de sucesso.
+     * @param {number} loggedInUserId - O ID do usuário retornado pelo backend.
+     */
+    const handleLogin = (loggedInUserId) => {
+        if (loggedInUserId) {
             setIsLoggedIn(true)
+            setUserId(loggedInUserId) // 🔑 Armazena o ID do usuário
             setCurrentPage("dashboard")
+            console.log("Usuário logado com ID:", loggedInUserId)
         }
     }
 
+    const handleLogout = () => {
+        setIsLoggedIn(false)
+        setUserId(null)
+        setCurrentPage("dashboard")
+    }
+
     if (!isLoggedIn) {
-        return <Login onLoginSuccess={() => handleLogin(true)} />
+        return <Login onLoginSuccess={handleLogin} />
     }
 
     const renderPage = () => {
         switch (currentPage) {
             case "dashboard":
-                return <Dashboard setCurrentPage={setCurrentPage} />
+                return <Dashboard userId={userId} setCurrentPage={setCurrentPage} />
             case "transactions":
-                return <Transactions />
+
+                return <Transactions userId={userId} />
             case "investments":
-                return <Investments />
+                return <Investments userId={userId} />
             case "goals":
-                return <Goals />
+
+                return <Goals userId={userId} />
             case "profile":
-                return <Profile />
+
+                return <Profile userId={userId} />
             case "settings":
-                return <Settings />
+
+                return <Settings userId={userId} />
             case "reports":
-                return <Reports />
+
+                return <Reports userId={userId} />
             case "logout":
-                setIsLoggedIn(false)
-                setCurrentPage("dashboard")
+                handleLogout()
                 return null
             default:
-                return <Dashboard setCurrentPage={setCurrentPage} />
+                return <Dashboard userId={userId} setCurrentPage={setCurrentPage} />
         }
     }
 
     return (
         <>
-            <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} onLogout={handleLogout} />
             <div className="main-content-wrapper">
                 {renderPage()}
             </div>

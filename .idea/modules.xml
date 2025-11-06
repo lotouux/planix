@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/planix.iml" filepath="$PROJECT_DIR$/.idea/planix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/Planix.iml" filepath="$PROJECT_DIR$/back-end/Planix.iml" />
     </modules>
   </component>
 </project>

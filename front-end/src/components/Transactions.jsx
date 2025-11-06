@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState } from "react"
 
 const allTransactions = [
@@ -127,17 +125,14 @@ export default function Transactions() {
     React.useEffect(() => {
         let result = allTransactions
 
-        // Filtro por tipo
         if (filterType !== "all") {
             result = result.filter((t) => t.type === filterType)
         }
 
-        // Filtro por categoria
         if (filterCategory !== "all") {
             result = result.filter((t) => t.category === filterCategory)
         }
 
-        // Filtro por busca
         if (searchTerm) {
             result = result.filter(
                 (t) =>
@@ -165,7 +160,6 @@ export default function Transactions() {
             <h1>Transações</h1>
             <p className="welcome-message">Visualize e gerencie todas as suas transações financeiras.</p>
 
-            {/* Cards de Resumo */}
             <div
                 className="transactions-summary"
                 style={{
@@ -194,7 +188,6 @@ export default function Transactions() {
                 </div>
             </div>
 
-            {/* Filtros */}
             <div
                 className="filters-section"
                 style={{
@@ -241,7 +234,6 @@ export default function Transactions() {
                 </div>
             </div>
 
-            {/* Tabela de Transações */}
             <div className="transactions-container" style={{ marginTop: "30px" }}>
                 <table className="transactions-table">
                     <thead>

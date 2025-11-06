@@ -14,8 +14,8 @@ public class BankConnection {
     @Column(name = "id_bank_connection")
     private Long idBankConnection;
 
-    @Column(name = "provider_name", length = 100, nullable = false) // CORRIGIDO
-    private String providerName; // CORRIGIDO
+    @Column(name = "provider_name", length = 100, nullable = false)
+    private String providerName;
 
     @Column(name = "api_key", length = 255)
     private String apiKey;
