@@ -41,7 +41,7 @@ public class DataInitializer implements CommandLineRunner {
             logger.info("======================================================================");
             logger.info("Usuário padrão criado com sucesso.");
             logger.info("Login: teste@gmail.com");
-            logger.info("Senha: teste123");
+            logger.info("Senha: senha123");
             logger.info("Por favor, altere esta senha em produção!");
             logger.info("======================================================================");
         } else {
