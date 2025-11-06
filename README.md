@@ -139,9 +139,8 @@ This approach allows the frontend to connect and test the application even witho
 | Categoria          | Tecnologias                                            |
 | ------------------ | ------------------------------------------------------ |
 | **Frontend**       | React, Vite, Bootstrap / Tailwind                      |
-| **Backend**        | coloca ai leleco                                       |
+| **Backend**        | Java, Spring Boot                                      |
 | **Database**       | ORACLE                                                 |
-| **Others**         | leleco                                                 |
 
 ---
 
