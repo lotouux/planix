@@ -122,18 +122,6 @@ This approach allows the frontend to connect and test the application even witho
 
 ---
 
-## 🖼️ **Screen Gallery**
-
-```
-![Home](./screenshots/home.png)
-![Dashboard](./screenshots/dashboard.png)
-![Metas](./screenshots/metas.png)
-![Transacoes](./screenshots/transacoes.png)
-![AskAI](./screenshots/askai.png)
-```
-
----
-
 ## 🛠️ **Technologies Used**
 
 | Categoria          | Tecnologias                                            |
